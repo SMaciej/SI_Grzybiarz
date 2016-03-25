@@ -1,2 +1,2 @@
 # SI_Grzybiarz
-Simple projekt for Artificial Intelligence classes
+A simple project for Artificial Intelligence classes.
