@@ -10,20 +10,39 @@ class Map:
 	def generate(self):
 		"""Generuje mape."""
 
-		# Przechodzimy po naszej macierzy, generując odpowiednie elementy.
+		# Przechodzimy po naszej macierzy, generujac odpowiednie elementy.
 		for rows_index, rows in enumerate(self.tiles):
    			for columns_index, tile in enumerate(rows):
-   				self.insert_tree(rows_index, columns_index, 50)
+   				self.insert_tree(rows_index, columns_index, 'brzoza', 3, 30)
+   				self.insert_tree(rows_index, columns_index, 'dab', 3, 20)
+   				self.insert_tree(rows_index, columns_index, 'swierk', 3, 10)
+   				self.insert_ground(rows_index, columns_index, 'mech', 1, 60)
+   				self.insert_mushroom(rows_index, columns_index, 'maslak', 1, 15)
+   				self.insert_mushroom(rows_index, columns_index, 'pieprznik', 1, 10)
+
    				# TUTAJ DODAC LOSOWANIE DODATKOWYCH ELEMENTOW
 
 
-   	def insert_tree(self, rows, columns, probability):
-   		"""Sprawdza, czy w danym miejscu mozna umiescic drzewo, jesli tak to umieszcza je tam z podanym prawdopodobienstwem."""
+   	def insert_tree(self, rows, columns, species, gap, probability):
+   		"""Sprawdza, czy w danym miejscu mozna umiescic drzewo (z podanym odstepem od innych drzew), jesli tak to umieszcza je tam z podanym prawdopodobienstwem."""
    		
-   		if self.check_neighbors(rows, columns, 'Tree', 3):
+   		if self.check_neighbors(rows, columns, 'Tree', gap) == True and self.check_neighbors(rows, columns, 'Tree', gap) != 'found':
    			if random.randint(0,100) <= probability:
-   				# TUTAJ DODAC LOSOWANIE GATUNKU:
-   				self.tiles[rows][columns] = Tree('brzoza')
+   				self.tiles[rows][columns] = Tree(species)
+
+   	def insert_ground(self, rows, columns, species, gap, probability):
+   		"""Sprawdza, czy w danym miejscu mozna umiescic obiekt gruntu, jesli tak to umieszcza go tam z podanym prawdopodobienstwem."""
+   		
+   		if self.check_neighbors(rows, columns, 'Tree', gap) == 'found':
+   			if random.randint(0,100) <= probability:
+   				self.tiles[rows][columns] = Ground(species)
+
+   	def insert_mushroom(self, rows, columns, species, gap, probability):
+   		"""Sprawdza, czy w danym miejscu mozna umiescic obiekt gruntu, jesli tak to umieszcza go tam z podanym prawdopodobienstwem."""
+   		
+   		if self.check_neighbors(rows, columns, 'Tree', gap) == 'found':
+   			if random.randint(0,100) <= probability:
+   				self.tiles[rows][columns] = Mushroom(species)
 
    	def print_map(self):
    		"""Drukuje mape w czytelnej formie."""
@@ -48,7 +67,7 @@ class Map:
 		   				self.tiles[r-dist][c-dist].type() != type:
 	   				dist = dist - 1
 	   			else:
-	 				return False
+	 				return 'found'
 	 			
 	   		except:
 	   			return False
@@ -59,9 +78,10 @@ class Tree:
 	"""Podany gatunek drzewa."""
 
 	def __init__(self, tree_species):
-		acceptable_species = ['brzoza', 'dab', 'swierk']
+		acceptable_species = {'brzoza':'B', 'dab':'D', 'swierk':'S'}
 		if tree_species in acceptable_species:
 			self.species_name = tree_species
+			self.species_symbol = acceptable_species[tree_species]
 		else:
 			raise NameError('Taki gatunek drzewa nie istnieje.')
 
@@ -75,18 +95,17 @@ class Tree:
 
 	def symbol(self):
 		"""Zwraca symbol obiektu na mapie"""
-		if self.species_name == 'brzoza':
-			return "B"
+		return self.species_symbol
 
 
 class Mushroom:
 	"""Podany gatunek grzyba."""
 
 	def __init__(self, mushroom_species):
-		self.species_name = mushroom_species
-		acceptable_species = ['maslak']
+		acceptable_species = {'maslak':'m', 'pieprznik':'p'}
 		if mushroom_species in acceptable_species:
 			self.species_name = mushroom_species
+			self.species_symbol = acceptable_species[mushroom_species]
 		else:
 			raise NameError('Taki gatunek grzyba nie istnieje.')
 
@@ -100,17 +119,17 @@ class Mushroom:
 
 	def symbol(self):
 		"""Zwraca symbol obiektu na mapie"""
-		if self.species_name == 'maslak':
-			return "M"
+		return self.species_symbol
 
 
 class Ground:
 	"""Podany rodzaj gruntu."""
 
 	def __init__(self, ground_species):
-		acceptable_species = ['trawa', 'mech']
+		acceptable_species = {'trawa':'.', 'mech':'+'}
 		if ground_species in acceptable_species:
 			self.species_name = ground_species
+			self.species_symbol = acceptable_species[ground_species]
 		else:
 			raise NameError('Taki rodzaj gruntu nie istnieje.')
 
@@ -124,8 +143,7 @@ class Ground:
 
 	def symbol(self):
 		"""Zwraca symbol obiektu na mapie"""
-		if self.species_name == 'trawa':
-				return "."
+		return self.species_symbol
 
 
 mapa = Map(30, 30)
