@@ -1,0 +1,38 @@
+{
+  "actor" : {
+    "basket" : {
+      "capacity" : {
+        "max" : 5000
+      },
+      "contains" : {}
+    }
+  },
+  "mushroom" : {
+    "type" : ["amanita", "hydnum", "amanita", "?"],
+    "poisonous" : ["yes", "no", "?"],
+    "weight" : {
+      "min" : 5,
+      "max" : 500
+    },
+    "pileus" : {
+      "color" : ["light brown", "dark brown", "brown", "yellow", "white", "red"],
+      "shape" : ["cap", "cone", "ovate", "depressed", "infundibuliform", "convex"]
+    },
+    "stipe" : {
+      "info" : ["rugged", "plain", "spikes", "dotted"],
+      "height" : {
+        "min" : 2,
+        "max" : 30
+      }
+    }
+  },
+  "tree" : {
+    "how_far" : ["near", "far"],
+    "height" : ["high", "short"],
+    "type" : ["birch"]
+  },
+  "mulch" : {
+    "leaves" : ["yes", "no"],
+    "path" : ["yes", "no"]
+  }
+}
