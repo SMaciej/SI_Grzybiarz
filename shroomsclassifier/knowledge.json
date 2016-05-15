@@ -1,0 +1,47 @@
+{
+  "actor" : {
+    "basket" : {
+      "contains" : [
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 30,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 15
+          }
+        },
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 20,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 12
+          }
+        },
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 10,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        }
+      ]
+    }
+  }
+}
