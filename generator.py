@@ -51,8 +51,8 @@ class Map:
         check = self.check_neighbors(rows, columns, 'Tree', gap)
         if type(check) is list:
             if self.check_favorite(check, species):  # Sprawdza, czy w poblizu miejsca wybranego na grzyba znajduje sie jego ulubione drzewo.
-                probability += 20                   # Jesli tak, to zwieksza prawdopodobienstwo wystapienia grzyba.
-            if random.randint(0,100) <= probability:    # Ostatecznie umieszcza grzyba z obliczonym prawdopodobienstwem.
+                probability += 20                       # Jesli tak, to zwieksza prawdopodobienstwo wystapienia grzyba.
+            if random.randint(0,100) <= probability:        # Ostatecznie umieszcza grzyba z obliczonym prawdopodobienstwem.
                 self.tiles[rows][columns] = Mushroom(species)
 
     def print_map(self):
@@ -62,6 +62,16 @@ class Map:
             for i in range(0, len(rows)):
                 print rows[i].symbol(),
             print "\n"
+
+    def print_to_file(self, file_name):
+        """Drukuje mape do pliku o podanej nazwie."""
+
+        f = open('./' + file_name, 'w+')
+
+        for rows in self.tiles:
+            for i in range(0, len(rows)):
+                print >>f, rows[i].symbol(),
+            print >>f, "\n"
 
     def check_neighbors(self, r, c, type, dist):
         """Funkcja pomocnicza sprawdzajaca sasiadow danego typu w podanej odleglosci."""
@@ -108,7 +118,5 @@ class Map:
 
 mapa = Map(30, 30)
 mapa.generate()
-mapa.print_map()
-# drzewo = Tree("brzoza")
-# print drzewo.type()
-# print drzewo.species()
+#mapa.print_map()
+mapa.print_to_file('map')
