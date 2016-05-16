@@ -2,6 +2,7 @@ import random
 from objects import Tree, Mushroom, Ground
 from config import trees, mushrooms, ground
 
+
 class Map:
     """Klasa mapy."""
 
@@ -28,22 +29,30 @@ class Map:
     def insert_tree(self, rows, columns, species, gap, probability):
         """Sprawdza, czy w danym miejscu mozna umiescic drzewo (z podanym odstepem od innych drzew), jesli tak to umieszcza je tam z podanym prawdopodobienstwem."""
         
-        if self.check_neighbors(rows, columns, 'Tree', gap) == True and self.check_neighbors(rows, columns, 'Tree', gap) != 'found':
+        # Drzewa umieszczane sa w odpowiedniej (zaleznym od atrybutu 'gap') odleglosci od siebie
+        check = self.check_neighbors(rows, columns, 'Tree', gap)
+        if check == True and type(check) is not list:
             if random.randint(0,100) <= probability:
                 self.tiles[rows][columns] = Tree(species)
 
     def insert_ground(self, rows, columns, species, gap, probability):
         """Sprawdza, czy w danym miejscu mozna umiescic obiekt gruntu, jesli tak to umieszcza go tam z podanym prawdopodobienstwem."""
         
-        if self.check_neighbors(rows, columns, 'Tree', gap) == 'found':
+        # Obiekt gruntu umieszczany jest w sasiedztwie (zaleznym od atrybutu 'gap') drzew.
+        check = self.check_neighbors(rows, columns, 'Tree', gap)
+        if type(check) is list:
             if random.randint(0,100) <= probability:
                 self.tiles[rows][columns] = Ground(species)
 
     def insert_mushroom(self, rows, columns, species, gap, probability):
-        """Sprawdza, czy w danym miejscu mozna umiescic obiekt gruntu, jesli tak to umieszcza go tam z podanym prawdopodobienstwem."""
-        
-        if self.check_neighbors(rows, columns, 'Tree', gap) == 'found':
-            if random.randint(0,100) <= probability:
+        """Sprawdza, czy w danym miejscu mozna umiescic obiekt grzyba, jesli tak to umieszcza go tam z podanym prawdopodobienstwem."""
+
+        # Grzyby umieszczane sa w sasiedztwie (zaleznym od atrybutu 'gap') drzew.
+        check = self.check_neighbors(rows, columns, 'Tree', gap)
+        if type(check) is list:
+            if self.check_favorite(check, species):  # Sprawdza, czy w poblizu miejsca wybranego na grzyba znajduje sie jego ulubione drzewo.
+                probability += 20                   # Jesli tak, to zwieksza prawdopodobienstwo wystapienia grzyba.
+            if random.randint(0,100) <= probability:    # Ostatecznie umieszcza grzyba z obliczonym prawdopodobienstwem.
                 self.tiles[rows][columns] = Mushroom(species)
 
     def print_map(self):
@@ -57,23 +66,43 @@ class Map:
     def check_neighbors(self, r, c, type, dist):
         """Funkcja pomocnicza sprawdzajaca sasiadow danego typu w podanej odleglosci."""
 
+        neighbors = []
+        t = self.tiles
         while dist > 0:
             try:
-                if      self.tiles[r+dist][c].type() != type and \
-                        self.tiles[r-dist][c].type() != type and \
-                        self.tiles[r][c+dist].type() != type and \
-                        self.tiles[r][c-dist].type() != type and \
-                        self.tiles[r+dist][c+dist].type() != type and \
-                        self.tiles[r-dist][c+dist].type() != type and \
-                        self.tiles[r+dist][c-dist].type() != type and \
-                        self.tiles[r-dist][c-dist].type() != type:
-                    dist = dist - 1
-                else:
-                    return 'found'
-                
+                if t[r+dist][c].type() == type:
+                    neighbors.append(t[r+dist][c])
+                if t[r-dist][c].type() == type:
+                    neighbors.append(t[r-dist][c])
+                if t[r][c+dist].type() == type:
+                    neighbors.append(t[r][c+dist])
+                if t[r][c-dist].type() == type:
+                    neighbors.append(t[r][c-dist])
+                if t[r+dist][c+dist].type() == type:
+                    neighbors.append(t[r+dist][c+dist])
+                if t[r-dist][c+dist].type() == type:
+                    neighbors.append(t[r-dist][c+dist])
+                if t[r+dist][c-dist].type() == type:
+                    neighbors.append(t[r+dist][c-dist])
+                if t[r-dist][c-dist].type() == type:
+                    neighbors.append(t[r-dist][c-dist])
+                dist = dist -1
             except:
                 return False
-        return True
+
+        if neighbors:
+            return neighbors
+        else:
+            return True
+
+    def check_favorite(self, neighbors, species):
+        """Funkcja pomocnicza sprawdzajaca, czy w sasiedztwie grzyba znajduje sie jego ulubione drzewo."""
+
+        for neighbor in neighbors:
+            if neighbor == mushrooms[species]['favorite_tree']:
+                return True
+            else:
+                return False
 
 
 

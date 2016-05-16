@@ -1,6 +1,7 @@
 import json
 from config import trees, mushrooms, ground
 
+
 class Tree:
     """Podany gatunek drzewa."""
 
@@ -8,7 +9,7 @@ class Tree:
         acceptable_species = trees
         if tree_species in acceptable_species:
             self.species_name = tree_species
-            self.species_symbol = acceptable_species[tree_species]['symbol']
+            self.species_data = acceptable_species[tree_species]
         else:
             raise NameError('Taki gatunek drzewa nie istnieje.')
 
@@ -22,7 +23,7 @@ class Tree:
 
     def symbol(self):
         """Zwraca symbol obiektu na mapie"""
-        return self.species_symbol
+        return self.species_data['symbol']
 
 
 class Mushroom:
@@ -32,7 +33,7 @@ class Mushroom:
         acceptable_species = mushrooms
         if mushroom_species in acceptable_species:
             self.species_name = mushroom_species
-            self.species_symbol = acceptable_species[mushroom_species]['symbol']
+            self.species_data = acceptable_species[mushroom_species]
         else:
             raise NameError('Taki gatunek grzyba nie istnieje.')
 
@@ -46,7 +47,7 @@ class Mushroom:
 
     def symbol(self):
         """Zwraca symbol obiektu na mapie"""
-        return self.species_symbol
+        return self.species_data['symbol']
 
 
 class Ground:
@@ -56,7 +57,7 @@ class Ground:
         acceptable_species = ground
         if ground_species in acceptable_species:
             self.species_name = ground_species
-            self.species_symbol = acceptable_species[ground_species]['symbol']
+            self.species_data = acceptable_species[ground_species]
         else:
             raise NameError('Taki rodzaj gruntu nie istnieje.')
 
@@ -70,5 +71,6 @@ class Ground:
 
     def symbol(self):
         """Zwraca symbol obiektu na mapie"""
-        return self.species_symbol
+        return self.species_data['symbol']
+
 
