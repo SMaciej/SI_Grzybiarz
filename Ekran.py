@@ -20,7 +20,16 @@ class Ekran(object):
 
         self.loadDict()
         self.cursor = (0,0)
-
+        self.cost=cost_table(self.mapa2)
+        self.graph=make_graph(self.cost)
+        self.cost=cost_table(self.mapa2)
+        plik=open("koszt.txt", "w")
+        for line in self.cost:
+            for elem in line:
+                plik.write(str(elem))
+                plik.write(' ')
+            plik.write('\n')
+        plik.close()	
         self.mainloop()
 
     def progExit(self):
@@ -38,9 +47,7 @@ class Ekran(object):
             self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
             pygame.time.wait(1000)
-            self.cost = cost_table(self.mapa2)
-            graph=make_graph(self.cost)
-            #self.idz_dalej(self, shortestPath(graph, (19, 19), (0, 0))[0], shortestPath(graph, (19, 19), (0, 0)).pop[0])	
+            print(shortestPath(self.graph, (0,0), (19,19)))
         self.progExit()
 
     def loadGraphic(self):
@@ -185,4 +192,6 @@ class Ekran(object):
         if len(sciezka)>0:
             self.krok=sciezka[0]
             sciezka.pop(0)	
-            idz_dalej(self, krok, sciezka)			
+            idz_dalej(self, krok, sciezka)	
+			
+   

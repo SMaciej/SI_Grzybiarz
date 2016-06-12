@@ -49,6 +49,7 @@ def Dijkstra(G,start,end=None):
 	Q = priorityDictionary()   # est.dist. of non-final vert.
 	Q[start] = 0
 
+	vwLength=0
 	for v in Q:
 		D[v] = Q[v]
 		if v == end: break
@@ -60,7 +61,6 @@ def Dijkstra(G,start,end=None):
 			elif w not in Q or vwLength < Q[w]:
 				Q[w] = vwLength
 				P[w] = v
-	
 	return D,P
 			
 def shortestPath(G,start,end):
@@ -74,7 +74,7 @@ def shortestPath(G,start,end):
 	Path.reverse()
 	return Path
 
-#print(shortestPath(graph, (19,19), (0,0)))
+#print(shortestPath(make_graph(graph), (19,19), (0,0)))
 
 def change_cost(table, path):
     table[path[0]][path[1]]=200

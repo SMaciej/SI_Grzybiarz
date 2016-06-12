@@ -34,9 +34,7 @@ class Ekran(object):
             self.drawTrees(self.mapa)			#wyswietlanie koron drzew
             pygame.display.flip()
             pygame.time.wait(2000)
-            self.cost=cost_table(self.mapa2)
-            graph=make_graph(self.cost)
-            self.idz_dalej(self, shortestPath(graph, (19, 19), (0, 0))[0], shortestPath(graph, (19, 19), (0, 0)).pop[0])			
+		
 
         self.progExit()
 
