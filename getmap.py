@@ -5,11 +5,11 @@ def cost_table(lista):
         for symbol in range(len(lista)):
             if symbol in ['S', 'B', 'D']: 
                 wiersze.append(10000)
-            elif symbol in ['m', 'p', 'h', 'c', 'l', 's', 'u']: 
+            if symbol in ['m', 'p', 'h', 'c', 'l', 's', 'u']: 
                 wiersze.append(1)
-            elif symbol=='+': 
+            if symbol=='+': 
                 wiersze.append(10)
-            else:
+            if symbol=='.': 
                 wiersze.append(100)
         costs.append(wiersze)
     return costs
