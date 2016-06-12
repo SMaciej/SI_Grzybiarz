@@ -12,3 +12,8 @@ Moduł zawierający definicje klas obiektów występujących na mapie.
 
 ## config.py
 Plik konfiguracyjny, stanowiący bazę danych obiektów występujących na mapie.
+
+## Ekran.py
+Wyświetlanie grafiki (na razie tylko mapa wygenerowana przez generator).
+Potrzebna jest biblioteka [pygame].
+Wymagana jest wersja python 3.5
