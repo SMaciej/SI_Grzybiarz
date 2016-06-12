@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 import sys
-#from getmap import *
+from getmap import *
 
 class Ekran(object):
     def __init__(self,Xres,Yres):
@@ -13,7 +13,9 @@ class Ekran(object):
         self.state = 1
         self.loadGraphic()
         self.mapa = self.loadmap("map")
-		print(self.mapa)
+        self.mapa2 = self.loadmap("map")
+
+        self.cost=cost_table(self.mapa2)
         self.loadDict()
         self.cursor = (0,0)
 
@@ -30,7 +32,7 @@ class Ekran(object):
             self.cursor = self.printPosition(event,self.mapa,self.cursor)
             self.surface.fill((0,0,0))
             self.drawMap(self.mapa)
-            self.rysujPostac((5,3))
+            self.rysujPostac((19,19))
             self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
         self.progExit()
