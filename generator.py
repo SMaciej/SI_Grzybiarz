@@ -60,8 +60,8 @@ class Map:
 
         for rows in self.tiles:
             for i in range(0, len(rows)):
-                print rows[i].symbol(),
-            print "\n"
+                print(rows[i].symbol())
+            print("\n")
 
     def print_to_file(self, file_name):
         """Drukuje mape do pliku o podanej nazwie."""
@@ -70,8 +70,8 @@ class Map:
 
         for rows in self.tiles:
             for i in range(0, len(rows)):
-                print >>f, rows[i].symbol(),
-            print >>f, "\n"
+                f.write(rows[i].symbol())
+            f.write("\n")
 
     def check_neighbors(self, r, c, type, dist):
         """Funkcja pomocnicza sprawdzajaca sasiadow danego typu w podanej odleglosci."""
@@ -116,7 +116,7 @@ class Map:
 
 
 
-mapa = Map(30, 30)
+mapa = Map(25, 25)
 mapa.generate()
 #mapa.print_map()
 mapa.print_to_file('map')
