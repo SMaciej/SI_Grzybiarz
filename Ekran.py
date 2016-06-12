@@ -1,18 +1,20 @@
 import pygame
 from pygame.locals import *
 import sys
+import random
 
 class Ekran(object):
-    def __init__(self,Xres,Yres):
+    def __init__(self, Xres, Yres):
         pygame.init()
         flag = DOUBLEBUF
         # bufor grafiki
-        self.surface = pygame.display.set_mode((Xres,Yres),flag)
+        self.surface = pygame.display.set_mode((Xres,Yres), flag)
         # zmienna stanu programu (1 -run, 0 - exit)
         self.state = 1
         self.loadGraphic()
         self.mapa = self.loadmap("map")
-
+        self.mapStat = self.createParams(self.mapa)
+        print(self.mapStat[3][3])
         self.loadDict()
         self.cursor = (0,0)
 
@@ -26,7 +28,7 @@ class Ekran(object):
             for event in pygame.event.get():
                 if event.type==QUIT or (event.type==KEYDOWN and event.key==K_ESCAPE):
                     self.state=0
-            self.cursor = self.printPosition(event,self.mapa,self.cursor)
+            self.cursor = self.printPosition(event,self.mapa,self.mapStat,self.cursor)
             self.surface.fill((0,0,0))
             self.drawMap(self.mapa)
             self.rysujPostac((5,3))
@@ -56,18 +58,18 @@ class Ekran(object):
 
     def loadDict(self):
         self.dict = {}
-        self.dict['B'] = ["Drzewo","Brzoza"]
-        self.dict['D'] = ["Drzewo","Dab"]
-        self.dict['S'] = ["Drzewo","Swierk"]
-        self.dict['u'] = ["Grzyb","Uszak"]
-        self.dict['s'] = ["Grzyb","Muchomor Sromotnikowy"]
-        self.dict['p'] = ["Grzyb","Pieprznik"]
-        self.dict['h'] = ["Grzyb","Muchomor Czerwony"]
-        self.dict['m'] = ["Grzyb","Maślak"]
-        self.dict['l'] = ["Grzyb","Lysiczka"]
-        self.dict['c'] = ["Grzyb","Czubajka"]
-        self.dict['.'] = ["Teren","Trawa"]
-        self.dict['+'] = ["Teren","Mech"]
+        self.dict['B'] = "[Drzewo Brzoza"
+        self.dict['D'] = "[Drzewo Dab"
+        self.dict['S'] = "[Drzewo Swierk"
+        self.dict['u'] = "[Grzyb Uszak"
+        self.dict['s'] = "[Grzyb Muchomor Sromotnikowy"
+        self.dict['p'] = "[Grzyb Pieprznik"
+        self.dict['h'] = "[Grzyb Muchomor Czerwony"
+        self.dict['m'] = "[Grzyb Maślak"
+        self.dict['l'] = "[Grzyb Lysiczka"
+        self.dict['c'] = "[Grzyb Czubajka"
+        self.dict['.'] = "[Teren Trawa"
+        self.dict['+'] = "[Teren Mech"
 
     def loadmap(self,mapa):
         mapa = open(mapa, 'r')
@@ -98,7 +100,7 @@ class Ekran(object):
                 Xdam += 24
             Ydam += 24
 
-    def printPosition(self,event,mapa,cursor):
+    def printPosition(self,event,mapa,stats,cursor):
         try:
             X = event.pos[0]
             Y = event.pos[1]
@@ -108,12 +110,59 @@ class Ekran(object):
             Y = cursor[1]
             position = cursor
 
-        key = mapa[int(Y/24)][int(X/24)]
+        X = int(X/24)
+        Y = int(Y/24)
+        key = mapa[Y][X]
         info = self.dict[key]
-        print(info)
+        if key in ['u', 's', 'p', 'h', 'm', 'l', 'c']:
+            stat = ' poison: '
+            stat += stats[Y][X]['poison']
+            stat += ' shape: '
+            stat += stats[Y][X]['shape']
+            stat += ' color: '
+            stat += stats[Y][X]['color']
+            stat += ' stipe: '
+            stat += stats[Y][X]['stipe']
+            stat += ' taste: '
+            stat += str(stats[Y][X]['taste'])
+            stat += ']'
+        else:
+            stat = ']'
+        print(str(X) + ' ' + str(Y) + ' ' + info + stat)
         return position
 
     def rysujPostac(self,koords):
         X = koords[0] * 24
         Y = koords[1] * 24
         self.surface.blit(self.grzybman,(X,Y))
+
+    def createParams(self,mapa):
+        tab1 = []
+        for line in mapa:
+            tab2 = []
+            for symbol in line:
+                if symbol == 'u':
+                    rand = random.randint(35,45)
+                    dict = {'key': symbol, 'poison': 'n', 'shape': 'cap', 'color': 'red', 'stipe': 'plain',  'taste': rand}
+                elif symbol == 's':
+                    dict = {'key': symbol, 'poison': 'y', 'shape': 'cap', 'color': 'yellow', 'stipe': 'plain',  'taste': 0}
+                elif symbol == 'p':
+                    rand = random.randint(5,15)
+                    dict = {'key': symbol, 'poison': 'n', 'shape': 'cone', 'color': 'yellow', 'stipe': 'rugged',  'taste': rand}
+                elif symbol == 'h':
+                    rand = random.randint(10,20)
+                    dict = {'key': symbol, 'poison': 'y', 'shape': 'cap', 'color': 'red', 'stipe': 'dotted',  'taste': rand}
+                elif symbol == 'm':
+                    rand = random.randint(0,10)
+                    dict = {'key': symbol, 'poison': 'n', 'shape': 'cap', 'color': 'brown', 'stipe': 'plain',  'taste': rand}
+                elif symbol == 'l':
+                    rand = random.randint(45,55)
+                    dict = {'key': symbol, 'poison': 'n', 'shape': 'cone', 'color': 'brown', 'stipe': 'plain',  'taste': rand}
+                elif symbol == 'c':
+                    rand = random.randint(15,25)
+                    dict = {'key': symbol, 'poison': 'n', 'shape': 'cap', 'color': 'white', 'stipe': 'dotted',  'taste': rand}
+                else:
+                    dict = {'key': symbol}
+                tab2.append(dict)
+            tab1.append(tab2)
+        return tab1
