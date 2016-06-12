@@ -64,6 +64,7 @@ def Dijkstra(G,start,end=None):
 	return D,P
 			
 def shortestPath(G,start,end):
+    #G1=make_graph(G)
 	D,P = Dijkstra(G,start,end)
 	Path = []
 	while 1:
