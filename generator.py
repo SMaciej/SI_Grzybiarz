@@ -121,20 +121,8 @@ class Map:
             else:
                 return False
 
-
-
-<<<<<<< HEAD
-mapa = Map(25, 25)
-mapa.generate()
-#mapa.print_map()
-<<<<<<< HEAD
-mapa.print_to_file('map.txt')
-=======
-mapa.print_to_file('map')
-=======
 #mapa = Map(8, 8)
 #mapa.generate()
 #mapa.print_map()
 #mapa.save_to_file('map')
->>>>>>> origin/master
->>>>>>> origin/master
+

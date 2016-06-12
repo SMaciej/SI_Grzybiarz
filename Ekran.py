@@ -12,8 +12,7 @@ class Ekran(object):
         self.state = 1
         self.loadGraphic()
         self.mapa = self.loadmap("map")
-        print(self.mapa)
-        print(len(self.mapa[0]))
+
         self.loadDict()
         self.cursor = (0,0)
 
@@ -30,7 +29,8 @@ class Ekran(object):
             self.cursor = self.printPosition(event,self.mapa,self.cursor)
             self.surface.fill((0,0,0))
             self.drawMap(self.mapa)
-#            self.drawTrees(self.mapa)      #wyswietlanie koron drzew
+            self.rysujPostac((5,3))
+            self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
         self.progExit()
 
@@ -52,6 +52,7 @@ class Ekran(object):
         self.korona['B'] = pygame.image.load('tree.brzoza.top.png')
         self.korona['D'] = pygame.image.load('tree.dab.top.png')
         self.korona['S'] = pygame.image.load('tree.swierk.top.png')
+        self.grzybman = pygame.image.load('char.grzybiarz.png')
 
     def loadDict(self):
         self.dict = {}
@@ -111,3 +112,8 @@ class Ekran(object):
         info = self.dict[key]
         print(info)
         return position
+
+    def rysujPostac(self,koords):
+        X = koords[0] * 24
+        Y = koords[1] * 24
+        self.surface.blit(self.grzybman,(X,Y))
