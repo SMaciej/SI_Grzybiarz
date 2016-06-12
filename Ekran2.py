@@ -14,8 +14,6 @@ class Ekran(object):
         self.loadGraphic()
         self.mapa = self.loadmap("map")
         self.mapa2 = self.loadmap("map")
-
-        self.cost=cost_table(self.mapa2)
         self.loadDict()
         self.cursor = (0,0)
 
@@ -33,8 +31,11 @@ class Ekran(object):
             self.surface.fill((0,0,0))
             self.drawMap(self.mapa)
             self.rysujPostac((19,19))
-            self.drawTrees(self.mapa)      #wyswietlanie koron drzew
+            self.drawTrees(self.mapa)			#wyswietlanie koron drzew
             pygame.display.flip()
+            pygame.time.wait(2000)
+            self.cost=cost_table(self.mapa2)			
+
         self.progExit()
 
     def loadGraphic(self):
@@ -120,3 +121,15 @@ class Ekran(object):
         X = koords[0] * 24
         Y = koords[1] * 24
         self.surface.blit(self.grzybman,(X,Y))
+		
+    def idz_dalej(self, krok, sciezka):
+        self.rysujPostac(self, krok)
+        self.cost=change_cost(self.cost, krok)
+        return sciezka
+        
+        
+    def pobierz_sciezke(sciezka):
+        if len(sciezka)>0:
+            self.krok=sciezka[0]
+            sciezka.pop(0)	
+        return krok, sciezka			

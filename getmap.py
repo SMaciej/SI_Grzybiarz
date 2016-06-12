@@ -1,20 +1,18 @@
 def cost_table(lista):
-	mylista=lista
-	# change chars to cost of visit
-	for i in range(len(mylista)):
-		for x in ['S', 'B', 'D']:
-			mylista[i] = [j.replace(x,'10000') for j in mylista[i]]
-		for x in ['m', 'p', 'h', 'c', 'l', 's', 'u']:
-			mylista[i] = [j.replace(x,'1') for j in mylista[i]]
-		mylista[i] = [j.replace('.','100') for j in mylista[i]]
-		mylista[i] = [j.replace('+','10') for j in mylista[i]]
-
-	# change values to int    
-	for i in range(len(mylista)):
-		for j in range(len(mylista)):
-			mylista[i][j]= eval(mylista[i][j])
-			
-	return mylista
+    costs=[]
+    for line in range(len(lista)):
+        wiersze=[]
+        for symbol in range(len(lista)):
+            if symbol in ['S', 'B', 'D']: 
+                wiersze.append(10000)
+            elif symbol in ['m', 'p', 'h', 'c', 'l', 's', 'u']: 
+                wiersze.append(1)
+            elif symbol=='+': 
+                wiersze.append(10)
+            else:
+                wiersze.append(100)
+        costs.append(wiersze)
+    return costs
 
 def node_name(row_index, col_index):
     return (row_index, col_index)
@@ -78,6 +76,6 @@ def shortestPath(G,start,end):
 #print(shortestPath(graph, (19,19), (0,0)))
 
 def change_cost(table, path):
-	for x in range(len(path)):
-		table[x[0]][x[1]]=200
+    table[path[0]][path[1]]=200
+    return table
 
