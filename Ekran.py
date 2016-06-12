@@ -1,11 +1,9 @@
 import pygame
 from pygame.locals import *
 import sys
-<<<<<<< HEAD
 import random
-=======
-#from getmap import *
->>>>>>> origin/master
+from getmap import *
+
 
 class Ekran(object):
     def __init__(self, Xres, Yres):
@@ -17,12 +15,9 @@ class Ekran(object):
         self.state = 1
         self.loadGraphic()
         self.mapa = self.loadmap("map")
-<<<<<<< HEAD
+        self.mapa2 = self.loadmap("map")
         self.mapStat = self.createParams(self.mapa)
-        print(self.mapStat[3][3])
-=======
-		print(self.mapa)
->>>>>>> origin/master
+
         self.loadDict()
         self.cursor = (0,0)
 
@@ -42,6 +37,8 @@ class Ekran(object):
             self.rysujPostac((5,3))
             self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
+            pygame.time.wait(1000)
+            self.cost = cost_table(self.mapa2)
         self.progExit()
 
     def loadGraphic(self):
@@ -143,7 +140,6 @@ class Ekran(object):
         X = koords[0] * 24
         Y = koords[1] * 24
         self.surface.blit(self.grzybman,(X,Y))
-<<<<<<< HEAD
 
     def createParams(self,mapa):
         tab1 = []
@@ -175,5 +171,3 @@ class Ekran(object):
                 tab2.append(dict)
             tab1.append(tab2)
         return tab1
-=======
->>>>>>> origin/master
