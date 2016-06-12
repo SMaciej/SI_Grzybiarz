@@ -119,4 +119,4 @@ class Map:
 mapa = Map(30, 30)
 mapa.generate()
 #mapa.print_map()
-mapa.print_to_file('map')
+mapa.print_to_file('map.txt')
