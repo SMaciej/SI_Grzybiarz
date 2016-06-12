@@ -3,13 +3,13 @@ def cost_table(lista):
     for line in range(len(lista)):
         wiersze=[]
         for symbol in range(len(lista)):
-            if symbol in ['S', 'B', 'D']: 
+            if lista[line][symbol] in ['S', 'B', 'D']: 
                 wiersze.append(10000)
-            if symbol in ['m', 'p', 'h', 'c', 'l', 's', 'u']: 
+            if lista[line][symbol] in ['m', 'p', 'h', 'c', 'l', 's', 'u']: 
                 wiersze.append(1)
-            if symbol=='+': 
+            if lista[line][symbol]=='+': 
                 wiersze.append(10)
-            if symbol=='.': 
+            if lista[line][symbol]=='.': 
                 wiersze.append(100)
         costs.append(wiersze)
     return costs
@@ -62,7 +62,8 @@ def Dijkstra(G,start,end=None):
 				Q[w] = vwLength
 				P[w] = v
 	return D,P
-			
+
+'''wywolanie ponizszej funkcji da nam sciezke'''	
 def shortestPath(G,start,end):
     #G1=make_graph(G)
 	D,P = Dijkstra(G,start,end)
@@ -76,7 +77,7 @@ def shortestPath(G,start,end):
 
 #print(shortestPath(make_graph(graph), (19,19), (0,0)))
 
-def change_cost(table, path):
-    table[path[0]][path[1]]=200
+def change_cost(table, step):
+    table[step[0]][step[1]]=200
     return table
 
