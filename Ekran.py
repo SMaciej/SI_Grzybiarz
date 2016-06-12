@@ -6,6 +6,7 @@ from getmap import *
 
 
 class Ekran(object):
+    # funkcja inicjujaca
     def __init__(self, Xres, Yres):
         pygame.init()
         flag = DOUBLEBUF
@@ -17,15 +18,18 @@ class Ekran(object):
         self.mapa = self.loadmap("map")
         self.mapa2 = self.loadmap("map")
         self.mapStat = self.createParams(self.mapa)
+        self.postacPosition = (13,13)
 
         self.loadDict()
         self.cursor = (0,0)
 
         self.mainloop()
 
+    # funkcja wyjscia z programu
     def progExit(self):
         exit()
 
+    # petla glowna
     def mainloop(self):
         while self.state == 1:
             for event in pygame.event.get():
@@ -34,13 +38,15 @@ class Ekran(object):
             self.cursor = self.printPosition(event,self.mapa,self.mapStat,self.cursor)
             self.surface.fill((0,0,0))
             self.drawMap(self.mapa)
-            self.rysujPostac((5,3))
+            self.rysujPostac(self.postacPosition)
+            self.naGrzybie(self.mapa)
             self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
             pygame.time.wait(1000)
             self.cost = cost_table(self.mapa2)
         self.progExit()
 
+    # wczytywanie grafik
     def loadGraphic(self):
         self.tiles = {}
         self.tiles['B'] = pygame.image.load('tree.brzoza.png')
@@ -61,6 +67,7 @@ class Ekran(object):
         self.korona['S'] = pygame.image.load('tree.swierk.top.png')
         self.grzybman = pygame.image.load('char.grzybiarz.png')
 
+    # wczytywanie slownika (dla funkcji debugujacej)
     def loadDict(self):
         self.dict = {}
         self.dict['B'] = "[Drzewo Brzoza"
@@ -76,6 +83,7 @@ class Ekran(object):
         self.dict['.'] = "[Teren Trawa"
         self.dict['+'] = "[Teren Mech"
 
+    # wczytanie mapy z generatora - utworzenie tablicy
     def loadmap(self,mapa):
         mapa = open(mapa, 'r')
         tab1 = []
@@ -86,6 +94,7 @@ class Ekran(object):
             tab1.append(tab2)
         return tab1
 
+    # rysowanie mapy
     def drawMap(self,mapa):
         Ydam = 0
         for line in mapa:
@@ -95,6 +104,7 @@ class Ekran(object):
                 Xdam += 24
             Ydam += 24
 
+    # rysowanie koron drzew
     def drawTrees(self,mapa):
         Ydam = 0
         for line in mapa:
@@ -105,6 +115,7 @@ class Ekran(object):
                 Xdam += 24
             Ydam += 24
 
+    # wyswietlanie info dotyczace pozycji na mapie (wskazywane przez kursor)
     def printPosition(self,event,mapa,stats,cursor):
         try:
             X = event.pos[0]
@@ -136,11 +147,13 @@ class Ekran(object):
         print(str(X) + ' ' + str(Y) + ' ' + info + stat)
         return position
 
+    # rysowanie grzybiarza na mapie
     def rysujPostac(self,koords):
         X = koords[0] * 24
         Y = koords[1] * 24
         self.surface.blit(self.grzybman,(X,Y))
 
+    # wytworzenie statystyk kazdego grzyba na mapie
     def createParams(self,mapa):
         tab1 = []
         for line in mapa:
@@ -171,3 +184,13 @@ class Ekran(object):
                 tab2.append(dict)
             tab1.append(tab2)
         return tab1
+
+    # funkcja sprawdza czy grzybiarz stoi na polu z grzybem
+    def naGrzybie(self,mapa):
+        postX = self.postacPosition[0]
+        postY = self.postacPosition[1]
+        current = mapa[postY][postX]
+        if current in ['u', 's', 'p', 'h', 'm', 'l', 'c']:
+            print('NA GRZYBIE STOJE')
+        else:
+            print("NIE MA GRZYBA")
