@@ -1,4 +1,4 @@
-import random
+import random, pickle
 from objects import Tree, Mushroom, Ground
 from config import trees, mushrooms, ground
 
@@ -60,8 +60,8 @@ class Map:
 
         for rows in self.tiles:
             for i in range(0, len(rows)):
-                print rows[i].symbol(),
-            print "\n"
+                print(rows[i].symbol())
+            print("\n")
 
     def print_to_file(self, file_name):
         """Drukuje mape do pliku o podanej nazwie."""
@@ -70,8 +70,15 @@ class Map:
 
         for rows in self.tiles:
             for i in range(0, len(rows)):
-                print >>f, rows[i].symbol(),
-            print >>f, "\n"
+                f.write(rows[i].symbol())
+            f.write("\n")
+
+    def save_to_file(self, file_name):
+        """Zapisuje mape do pliku o podanej nazwie."""
+
+        f = open('./' + file_name, 'w+')
+
+        pickle.dump(self, open('./' + file_name + '.p', 'wb'))
 
     def check_neighbors(self, r, c, type, dist):
         """Funkcja pomocnicza sprawdzajaca sasiadow danego typu w podanej odleglosci."""
@@ -116,7 +123,18 @@ class Map:
 
 
 
-mapa = Map(30, 30)
+<<<<<<< HEAD
+mapa = Map(25, 25)
 mapa.generate()
 #mapa.print_map()
+<<<<<<< HEAD
 mapa.print_to_file('map.txt')
+=======
+mapa.print_to_file('map')
+=======
+#mapa = Map(8, 8)
+#mapa.generate()
+#mapa.print_map()
+#mapa.save_to_file('map')
+>>>>>>> origin/master
+>>>>>>> origin/master
