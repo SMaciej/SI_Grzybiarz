@@ -19,13 +19,13 @@ class Ekran(object):
         self.mapa2 = self.loadmap("map")
         self.mapStat = self.createParams(self.mapa)
         self.postacPosition = (19,19)
-        self.sciezka = [(19,19),(18,19),(18,18),(17,18),(17,17),(16,17),(16,16),(15,16),(15,15)]
-
+#        self.sciezka = [(19,19),(18,19),(18,18),(17,18),(17,17),(16,17),(16,16),(15,16),(15,15)]
         self.loadDict()
         self.cursor = (0,0)
         self.cost=cost_table(self.mapa2)
         self.graph=make_graph(self.cost)
         self.cost=cost_table(self.mapa2)
+        self.sciezka = shortestPath(self.graph, (19,19), (0,0))
 #        plik=open("koszt.txt", "w")
 #        for line in self.cost:
 #            for elem in line:
