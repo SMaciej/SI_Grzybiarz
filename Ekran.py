@@ -18,7 +18,8 @@ class Ekran(object):
         self.mapa = self.loadmap("map")
         self.mapa2 = self.loadmap("map")
         self.mapStat = self.createParams(self.mapa)
-        self.postacPosition = (13,13)
+        self.postacPosition = (19,19)
+        self.sciezka = [(19,19),(18,19),(18,18),(17,18),(17,17),(16,17),(16,16),(15,16),(15,15)]
 
         self.loadDict()
         self.cursor = (0,0)
@@ -48,11 +49,11 @@ class Ekran(object):
             self.surface.fill((0,0,0))
             self.drawMap(self.mapa)
             self.rysujPostac(self.postacPosition)
-            self.naGrzybie(self.mapa)
+            self.naGrzybie(self.mapa,self.sciezka)
             self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
             pygame.time.wait(1000)
-            print(shortestPath(self.graph, (0,0), (19,19)))
+#            print(shortestPath(self.graph, (0,0), (19,19)))
         self.progExit()
 
     # wczytywanie grafik
@@ -195,7 +196,7 @@ class Ekran(object):
         return tab1
 
     # funkcja sprawdza czy grzybiarz stoi na polu z grzybem
-    def naGrzybie(self,mapa):
+    def naGrzybie(self,mapa,sciezka):
         postX = self.postacPosition[0]
         postY = self.postacPosition[1]
         current = mapa[postY][postX]
@@ -203,4 +204,19 @@ class Ekran(object):
             print('NA GRZYBIE STOJE')
         else:
             print("NIE MA GRZYBA")
+        self.postacPosition = self.ideDo(sciezka)
 
+    def ideDo(self,sciezka):
+        startPos = sciezka[0]
+        endPos = sciezka[len(sciezka)-1]
+        nastepny = False
+        for krok in sciezka:
+            if endPos == self.postacPosition:
+                return endPos
+            if krok == self.postacPosition:
+                nastepny = True
+                continue
+            if nastepny:
+                print('ide do')
+                print(krok)
+                return krok
