@@ -26,13 +26,13 @@ class Ekran(object):
         self.cost=cost_table(self.mapa2)
         self.graph=make_graph(self.cost)
         self.cost=cost_table(self.mapa2)
-        plik=open("koszt.txt", "w")
-        for line in self.cost:
-            for elem in line:
-                plik.write(str(elem))
-                plik.write(' ')
-            plik.write('\n')
-        plik.close()	
+#        plik=open("koszt.txt", "w")
+#        for line in self.cost:
+#            for elem in line:
+#                plik.write(str(elem))
+#                plik.write(' ')
+#            plik.write('\n')
+#        plik.close()	'''
         self.mainloop()
 
     # funkcja wyjscia z programu
