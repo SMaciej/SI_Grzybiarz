@@ -39,6 +39,8 @@ class Ekran(object):
             pygame.display.flip()
             pygame.time.wait(1000)
             self.cost = cost_table(self.mapa2)
+            graph=make_graph(self.cost)
+            #self.idz_dalej(self, shortestPath(graph, (19, 19), (0, 0))[0], shortestPath(graph, (19, 19), (0, 0)).pop[0])	
         self.progExit()
 
     def loadGraphic(self):
@@ -171,3 +173,16 @@ class Ekran(object):
                 tab2.append(dict)
             tab1.append(tab2)
         return tab1
+
+	
+    def idz_dalej(self, krok, sciezka):
+        self.rysujPostac(self, krok)
+        self.cost=change_cost(self.cost, krok)
+        return sciezka
+        
+        
+    def pobierz_sciezke(sciezka):
+        if len(sciezka)>0:
+            self.krok=sciezka[0]
+            sciezka.pop(0)	
+            idz_dalej(self, krok, sciezka)			
