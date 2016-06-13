@@ -16,25 +16,12 @@
           }
         },
         {
-          "type" : "?",
-          "poisonous" : "?",
-          "weight" : 150,
-          "pileus" : {
-            "color" : "red",
-            "shape" : "cap"
-          },
-          "stipe" : {
-            "info" : "plain",
-            "height" : 15
-          }
-        },
-        {
           "type": "?",
           "poisonous": "?",
           "weight": 50,
           "pileus": {
-            "color": "yellow",
-            "shape": "?"
+            "color": "red",
+            "shape": "cap"
           },
           "stipe": {
             "info": "plain",

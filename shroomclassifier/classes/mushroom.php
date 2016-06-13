@@ -39,10 +39,6 @@ class Mushroom
               )");
     }
 
-    public function getTastiness() {
-        return round($this->fitness, 3);
-    }
-
     public function setFitness() {
         $this->fitness = 0;
 
@@ -93,38 +89,17 @@ class Mushroom
     }
 
     private function findSimiliar() {
-
         $stipe_height = $this->stipe['height'];
-
-        $query = "SELECT type,
-            pileus_color,
-            pileus_shape,
-            stipe_info,
+        $totalKnownShrooms = Config::query(
+            "SELECT type,
             ($this->weight / avg(weight)) as wg,
             ($stipe_height / avg(stipe_height)) as hg,
             poison,
             count(*) as cnt
-            FROM mushrooms ";
-
-        $options = [];
-        if ($this->pileus['color'] !== '?') {
-            $options[] = 'pileus_color = "'.$this->pileus['color'].'"';
-        }
-        if ($this->pileus['shape'] !== '?') {
-            $options[] = 'pileus_shape = "'.$this->pileus['shape'].'"';
-        }
-        if ($this->stipe['info'] !== '?') {
-            $options[] = 'stipe_info = "'.$this->stipe['info'].'"';
-        }
-
-        if (count($options) > 0) {
-            $query .= 'WHERE '.implode(' AND ', $options);
-        }
-
-        $query .= " GROUP BY type, pileus_color, pileus_shape, stipe_info
-            ORDER BY cnt DESC";
-
-        $totalKnownShrooms = Config::query($query);
+            FROM mushrooms
+            GROUP BY type, pileus_color, pileus_shape, stipe_info
+            ORDER BY cnt DESC"
+        );
 
         $result = array(
             'name' => '?',
@@ -138,7 +113,6 @@ class Mushroom
         foreach ($totalKnownShrooms as $probably) {
             $totalDiff = abs($probably['wg']) + abs($probably['hg']);
             $total += (int)$probably['cnt'];
-            // size
             if ($totalDiff < ALLOWED_TOTAL_DIFF &&
                 (abs($result['wg']) + abs($result['hg'])) > $totalDiff) {
                 $result = array(
