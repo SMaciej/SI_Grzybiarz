@@ -29,7 +29,7 @@ class Ekran(object):
         self.cost=cost_table(self.mapa)
         self.graph=make_graph(self.cost)
 
-        print(self.graph)
+#        print(self.graph)
         self.sciezka = shortestPath(self.graph, (self.POS,self.POS), (0,0))
 
 #        plik=open("koszt.txt", "w")
@@ -133,7 +133,7 @@ class Ekran(object):
         for line in mapa:
             Xdam = 0
             for symbol in line:
-                self.surface.blit(self.tiles[symbol], (Xdam,Ydam))
+                self.surface.blit(self.tiles[symbol], (Ydam,Xdam))
                 Xdam += 24
             Ydam += 24
 
@@ -184,8 +184,9 @@ class Ekran(object):
     # rysowanie grzybiarza na mapie
     def rysujPostac(self,koords):
         print('Draw mush-men')
-        X = koords[0] * 24
-        Y = koords[1] * 24
+        Y = koords[0] * 24
+#        print(Y)
+        X = koords[1] * 24
         self.surface.blit(self.grzybman,(X,Y))
 
     # wytworzenie statystyk kazdego grzyba na mapie
@@ -231,6 +232,7 @@ class Ekran(object):
             self.zbierzGrzyb(self.mapa)
         else:
             print("NIE MA GRZYBA")
+        print(sciezka)
         self.postacPosition = self.ideDo(sciezka)
 
     # funkcja zmieniajaca nastepna pozycje grzybiarza

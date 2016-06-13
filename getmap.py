@@ -23,18 +23,19 @@ def make_graph(matrix):
     columns = range(width)
     for rowindex in range(height):
         for colindex in columns:
+        #    if(matrix[rowindex][colindex]<1000):
             graph[node_name(rowindex, colindex)] = x = {}
-            # Up
-            if (rowindex > 0) and (matrix[rowindex - 1][colindex] !=10000):
+                # Up
+            if (rowindex > 0): # and (matrix[rowindex - 1][colindex] <1000)
                 x[node_name(rowindex - 1, colindex)] = matrix[rowindex - 1][colindex]
-            # Down
-            if (rowindex < height - 1) and (matrix[rowindex + 1][colindex]!=10000):
+				# Down
+            if (rowindex < height - 1): # and (matrix[rowindex + 1][colindex]<1000)
                 x[node_name(rowindex + 1, colindex)] = matrix[rowindex + 1][colindex]
-            # Left
-            if (colindex > 0) and (matrix[rowindex][colindex - 1]!=10000):
+				# Left
+            if (colindex > 0): # and (matrix[rowindex][colindex - 1]<1000)
                 x[node_name(rowindex, colindex - 1)] = matrix[rowindex][colindex - 1]
-            # Right
-            if (colindex < width - 1) and (matrix[rowindex][colindex + 1] !=10000):
+			# Right
+            if (colindex < width - 1): # and (matrix[rowindex][colindex + 1]<1000)
                 x[node_name(rowindex, colindex + 1)] = matrix[rowindex][colindex + 1]
 
     return graph
@@ -55,7 +56,6 @@ def Dijkstra(G,start,end=None):
 		D[v] = Q[v]
 		if v == end: break
 		for w in G[v]:
-#			if G[v][w]<1000:
 			vwLength = D[v] + G[v][w]
 			if w in D:
 				if vwLength < D[w]:
@@ -64,8 +64,8 @@ def Dijkstra(G,start,end=None):
 			elif w not in Q or vwLength < Q[w]:
 				Q[w] = vwLength
 				P[w] = v
-	print('Djikstra')
-	print(D)
+#	print('Dijkstra:')
+#	print(D)
 	return D,P
 
 '''wywolanie ponizszej funkcji da nam sciezke'''	
@@ -78,7 +78,6 @@ def shortestPath(G,start,end):
 		if end == start: break
 		end = P[end]
 	Path.reverse()
-	print(Path)
 	return Path
 
 #print(shortestPath(make_graph(graph), (19,19), (0,0)))
