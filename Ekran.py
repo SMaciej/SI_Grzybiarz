@@ -28,7 +28,7 @@ class Ekran(object):
         self.cursor = (0,0)
         self.koszyk = []
         self.grzybyUczenie = {}
-        self.cost=cost_table(self.mapa)
+        self.cost=cost_table(self.mapa, self.grzybyUczenie)
         self.graph=make_graph(self.cost)
 #        print(self.graph)
         self.sciezka = shortestPath(self.graph, (self.POS,self.POS), (0,0))
@@ -123,7 +123,7 @@ class Ekran(object):
     # utworzenie grafu
     def createPath(self,start,end):
         print('Create paths')
-        self.cost = cost_table(self.mapa)
+        self.cost = cost_table(self.mapa, self.grzybyUczenie)
         self.graph = make_graph(self.cost)
         self.sciezka = shortestPath(self.graph, start, end)
 
@@ -251,11 +251,11 @@ class Ekran(object):
                 elif endPos == (0,self.POS):
                     self.createPath((0, self.POS), (self.POS, self.POS))
                 elif endPos == (self.POS,self.POS):
-                    self.createWorld()
-                    self.createPath((self.POS,self.POS),(0,0))
                     self.uczenieMaszynowe(self.koszyk)
                     print('oproznianie koszyka')
                     self.koszyk = []
+                    self.createWorld()
+                    self.createPath((self.POS,self.POS),(0,0))
                 return endPos
             if krok == self.postacPosition:
                 nastepny = True

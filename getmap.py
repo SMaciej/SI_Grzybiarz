@@ -1,12 +1,22 @@
-def cost_table(lista):
+def cost_table(lista, slownik):
     costs=[]
+      
     for line in range(len(lista)):
         wiersze=[]
         for symbol in range(len(lista)):
             if lista[line][symbol] in ['S', 'B', 'D']: 
                 wiersze.append(10000)
             if lista[line][symbol] in ['m', 'p', 'h', 'c', 'l', 's', 'u']: 
-                wiersze.append(1)
+                if slownik == {}:
+                    print('slownik pusty')
+                    wiersze.append(1)
+                else:
+                    if lista[line][symbol] in slownik:
+                        print('jest w slowniku')
+                        wiersze.append(1-slownik[lista[line][symbol]])
+                    else:
+                        print('nie ma w slowniku')
+                        wiersze.append(1)
             if lista[line][symbol]=='+': 
                 wiersze.append(50)
             if lista[line][symbol]=='.': 
