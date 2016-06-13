@@ -3,6 +3,7 @@ from pygame.locals import *
 import sys
 import random
 from getmap import *
+from generator import Map
 
 
 class Ekran(object):
@@ -17,14 +18,13 @@ class Ekran(object):
         self.loadGraphic()
         self.mapa = self.loadmap("map")
         self.mapa2 = self.loadmap("map")
-        self.mapStat = self.createParams(self.mapa)
         self.postacPosition = (19,19)
 #        self.sciezka = [(19,19),(18,19),(18,18),(17,18),(17,17),(16,17),(16,16),(15,16),(15,15)]
         self.loadDict()
         self.cursor = (0,0)
-        self.cost=cost_table(self.mapa2)
+        self.koszyk = []
+        self.cost=cost_table(self.mapa)
         self.graph=make_graph(self.cost)
-        self.cost=cost_table(self.mapa2)
         self.sciezka = shortestPath(self.graph, (19,19), (0,0))
 #        plik=open("koszt.txt", "w")
 #        for line in self.cost:
@@ -37,7 +37,7 @@ class Ekran(object):
 
     # funkcja wyjscia z programu
     def progExit(self):
-        exit()
+        sys.exit()
 
     # petla glowna
     def mainloop(self):
@@ -52,8 +52,7 @@ class Ekran(object):
             self.naGrzybie(self.mapa,self.sciezka)
             self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
-            pygame.time.wait(1000)
-#            print(shortestPath(self.graph, (0,0), (19,19)))
+            pygame.time.wait(500)
         self.progExit()
 
     # wczytywanie grafik
@@ -102,7 +101,21 @@ class Ekran(object):
             for i in range(len(line[:-1])):
                 tab2.append(line[i])
             tab1.append(tab2)
+        self.mapStat = self.createParams(tab1)
         return tab1
+
+    # tworzenie nowego swiata
+    def createWorld(self):
+        mapa = Map(20, 20)
+        mapa.generate()
+        mapa.print_to_file('map')
+        self.mapa = self.loadmap("map")
+
+    # utworzenie grafu
+    def createGraph(self,start,end):
+        self.cost = cost_table(self.mapa)
+        self.graph = make_graph(self.cost)
+        self.sciezka = shortestPath(self.graph, start, end)
 
     # rysowanie mapy
     def drawMap(self,mapa):
@@ -202,16 +215,29 @@ class Ekran(object):
         current = mapa[postY][postX]
         if current in ['u', 's', 'p', 'h', 'm', 'l', 'c']:
             print('NA GRZYBIE STOJE')
+            self.zbierzGrzyb(self.mapa)
         else:
             print("NIE MA GRZYBA")
         self.postacPosition = self.ideDo(sciezka)
 
+    # funkcja zmieniajaca nastepna pozycje grzybiarza
     def ideDo(self,sciezka):
         startPos = sciezka[0]
         endPos = sciezka[len(sciezka)-1]
         nastepny = False
         for krok in sciezka:
             if endPos == self.postacPosition:
+                self.cost = cost_table(self.mapa)
+                self.graph = make_graph(self.cost)
+                if endPos == (0,0):
+                    self.createGraph((0, 0), (19, 0))
+                elif endPos == (19,0):
+                    self.createGraph((19, 0), (0, 19))
+                elif endPos == (0,19):
+                    self.createGraph((0, 19), (19, 19))
+                elif endPos == (19,19):
+                    self.createWorld()
+                    self.createGraph((19,19),(0,0))
                 return endPos
             if krok == self.postacPosition:
                 nastepny = True
@@ -220,3 +246,11 @@ class Ekran(object):
                 print('ide do')
                 print(krok)
                 return krok
+
+    # funkcja zbierajaca grzyb z danej pozycji gracza i dodanie go do koszyka
+    def zbierzGrzyb(self,mapa):
+        postX = self.postacPosition[0]
+        postY = self.postacPosition[1]
+        mapa[postY][postX] = '.'
+        grzyb = self.mapStat[postY][postX]
+        self.koszyk.append(grzyb)

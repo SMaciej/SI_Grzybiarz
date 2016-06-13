@@ -17,3 +17,12 @@ Plik konfiguracyjny, stanowiący bazę danych obiektów występujących na mapie
 Wyświetlanie grafiki (na razie tylko mapa wygenerowana przez generator).
 Potrzebna jest biblioteka [pygame].
 Wymagana jest wersja python 3.5
+
+## Co mamy:
+- Generator proceduralny mapy
+- Wyświetlanie mapy
+- Dodanie cech dodatkowych dla każdego grzyba
+- Poruszanie się po danej ścieżce
+- Zbieranie grzybów (wszystkich jak leci - trzeba zmienić to przez użycie SI)
+- Kontrola myszy - wyświetlenie informacji o polu
+- Pętla z tworzeniem nowej mapy
