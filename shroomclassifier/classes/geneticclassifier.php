@@ -18,7 +18,10 @@ class GeneticClassifier
         $this->basket = $basket;
         foreach ($basket as $i => $ix ) {
             foreach ($ix as $index => $mushroom) {
-                echo'Mushroom #'.$index.' is '.$mushroom->getProbablyName()."\n";
+                echo'Mushroom #'.($index + 1).
+                    ' is '.$mushroom->getProbablyName().
+                    ', with tastiness: '.$mushroom->getTastiness().
+                    "\n";
             }
         }
     }

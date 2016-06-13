@@ -9,4 +9,4 @@ if (isset($argv[2]) && $argv[2] === 'kn') {
     $knowledge = new Knowledge('./knowledge.json');
 }
 
-# $classifier = new GeneticClassifier($actor->basket);
+$classifier = new GeneticClassifier($actor->basket);
