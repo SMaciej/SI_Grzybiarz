@@ -8,24 +8,26 @@ from generator import Map
 
 class Ekran(object):
     # funkcja inicjujaca
-    def __init__(self, Xres, Yres):
+    def __init__(self, Xres, Yres, res):
         pygame.init()
         flag = DOUBLEBUF
         # bufor grafiki
         self.surface = pygame.display.set_mode((Xres,Yres), flag)
+        self.RES = res
+        self.POS = res - 1
         # zmienna stanu programu (1 -run, 0 - exit)
         self.state = 1
         self.loadGraphic()
         self.mapa = self.loadmap("map")
         self.mapa2 = self.loadmap("map")
-        self.postacPosition = (19,19)
+        self.postacPosition = (self.POS,self.POS)
 #        self.sciezka = [(19,19),(18,19),(18,18),(17,18),(17,17),(16,17),(16,16),(15,16),(15,15)]
         self.loadDict()
         self.cursor = (0,0)
         self.koszyk = []
         self.cost=cost_table(self.mapa)
         self.graph=make_graph(self.cost)
-        self.sciezka = shortestPath(self.graph, (19,19), (0,0))
+        self.sciezka = shortestPath(self.graph, (self.POS,self.POS), (0,0))
 #        plik=open("koszt.txt", "w")
 #        for line in self.cost:
 #            for elem in line:
@@ -52,7 +54,7 @@ class Ekran(object):
             self.naGrzybie(self.mapa,self.sciezka)
             self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
-            pygame.time.wait(500)
+#            pygame.time.wait(500)
         self.progExit()
 
     # wczytywanie grafik
@@ -106,13 +108,13 @@ class Ekran(object):
 
     # tworzenie nowego swiata
     def createWorld(self):
-        mapa = Map(20, 20)
+        mapa = Map(self.RES, self.RES)
         mapa.generate()
         mapa.print_to_file('map')
         self.mapa = self.loadmap("map")
 
     # utworzenie grafu
-    def createGraph(self,start,end):
+    def createPath(self,start,end):
         self.cost = cost_table(self.mapa)
         self.graph = make_graph(self.cost)
         self.sciezka = shortestPath(self.graph, start, end)
@@ -227,17 +229,15 @@ class Ekran(object):
         nastepny = False
         for krok in sciezka:
             if endPos == self.postacPosition:
-                self.cost = cost_table(self.mapa)
-                self.graph = make_graph(self.cost)
                 if endPos == (0,0):
-                    self.createGraph((0, 0), (19, 0))
-                elif endPos == (19,0):
-                    self.createGraph((19, 0), (0, 19))
-                elif endPos == (0,19):
-                    self.createGraph((0, 19), (19, 19))
-                elif endPos == (19,19):
+                    self.createPath((0, 0), (self.POS, 0))
+                elif endPos == (self.POS,0):
+                    self.createPath((self.POS, 0), (0, self.POS))
+                elif endPos == (0,self.POS):
+                    self.createPath((0, self.POS), (self.POS, self.POS))
+                elif endPos == (self.POS,self.POS):
                     self.createWorld()
-                    self.createGraph((19,19),(0,0))
+                    self.createPath((self.POS,self.POS),(0,0))
                 return endPos
             if krok == self.postacPosition:
                 nastepny = True
