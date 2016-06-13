@@ -8,7 +8,7 @@
     }
   },
   "mushroom" : {
-    "type" : ["amanita", "hydnum", "amanita", "?"],
+    "type" : ["auricularia", "amanita", "phalloides", "hydnum", "cantharellus", "luteus", "semilanceata", "procera", "?"],
     "poisonous" : ["yes", "no", "?"],
     "weight" : {
       "min" : 5,
@@ -21,7 +21,7 @@
     "stipe" : {
       "info" : ["rugged", "plain", "spikes", "dotted"],
       "height" : {
-        "min" : 2,
+        "min" : 1,
         "max" : 30
       }
     }

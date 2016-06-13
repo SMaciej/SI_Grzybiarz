@@ -92,6 +92,487 @@
             "info" : "plain",
             "height" : 7
           }
+        },
+        {
+          "type" : "luteus",
+          "poisonous" : "no",
+          "weight" : 40,
+          "pileus" : {
+            "color" : "light brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 6
+          }
+        },
+        {
+          "type" : "luteus",
+          "poisonous" : "no",
+          "weight" : 40,
+          "pileus" : {
+            "color" : "light brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 7
+          }
+        },
+        {
+          "type" : "cantharellus",
+          "poisonous" : "no",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "rugged",
+            "height" : 6
+          }
+        },
+        {
+          "type" : "procera",
+          "poisonous" : "no",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "white",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "dotted",
+            "height" : 6
+          }
+        },
+        {
+          "type" : "semilanceata",
+          "poisonous" : "no",
+          "weight" : 110,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 10
+          }
+        },
+        {
+          "type" : "semilanceata",
+          "poisonous" : "no",
+          "weight" : 115,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 11
+          }
+        },
+        {
+          "type" : "semilanceata",
+          "poisonous" : "no",
+          "weight" : 100,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 12
+          }
+        },
+        {
+          "type" : "semilanceata",
+          "poisonous" : "no",
+          "weight" : 100,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 12
+          }
+        },
+        {
+          "type" : "phalloides",
+          "poisonous" : "yes",
+          "weight" : 150,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 150,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 2
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 90,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 2
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 140,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 3
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 90,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 2
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 4
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 90,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 2
+          }
+        },
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 150,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 15
+          }
+        },
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "light_red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 12
+          }
+        },
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 75,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        },
+        {
+          "type" : "hydnum",
+          "poisonous" : "no",
+          "weight" : 60,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        },
+        {
+          "type" : "hydnum",
+          "poisonous" : "no",
+          "weight" : 40,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 5
+          }
+        },
+        {
+          "type" : "hydnum",
+          "poisonous" : "no",
+          "weight" : 90,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 11
+          }
+        },
+        {
+          "type" : "hydnum",
+          "poisonous" : "no",
+          "weight" : 60,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 7
+          }
+        },
+        {
+          "type" : "luteus",
+          "poisonous" : "no",
+          "weight" : 50,
+          "pileus" : {
+            "color" : "light brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 7
+          }
+        },
+        {
+          "type" : "luteus",
+          "poisonous" : "no",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "light brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 12
+          }
+        },
+        {
+          "type" : "cantharellus",
+          "poisonous" : "no",
+          "weight" : 99,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "rugged",
+            "height" : 6
+          }
+        },
+        {
+          "type" : "procera",
+          "poisonous" : "no",
+          "weight" : 60,
+          "pileus" : {
+            "color" : "white",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "dotted",
+            "height" : 5
+          }
+        },
+        {
+          "type" : "semilanceata",
+          "poisonous" : "no",
+          "weight" : 110,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 10
+          }
+        },
+        {
+          "type" : "semilanceata",
+          "poisonous" : "no",
+          "weight" : 115,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 11
+          }
+        },
+        {
+          "type" : "semilanceata",
+          "poisonous" : "no",
+          "weight" : 90,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 11
+          }
+        },
+        {
+          "type" : "semilanceata",
+          "poisonous" : "no",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 6
+          }
+        },
+        {
+          "type" : "phalloides",
+          "poisonous" : "yes",
+          "weight" : 120,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 7
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 150,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 2
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 90,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 2
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 140,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 3
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 90,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 2
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 4
+          }
+        },
+        {
+          "type" : "auricularia",
+          "poisonous" : "no",
+          "weight" : 70,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 1
+          }
         }
       ]
     }
