@@ -1,0 +1,99 @@
+{
+  "actor" : {
+    "basket" : {
+      "contains" : [
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 150,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 15
+          }
+        },
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "light_red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 12
+          }
+        },
+        {
+          "type" : "amanita",
+          "poisonous" : "yes",
+          "weight" : 75,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        },
+        {
+          "type" : "hydnum",
+          "poisonous" : "no",
+          "weight" : 60,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        },
+        {
+          "type" : "hydnum",
+          "poisonous" : "no",
+          "weight" : 40,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 5
+          }
+        },
+        {
+          "type" : "hydnum",
+          "poisonous" : "no",
+          "weight" : 90,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 11
+          }
+        },
+        {
+          "type" : "hydnum",
+          "poisonous" : "no",
+          "weight" : 60,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 7
+          }
+        }
+      ]
+    }
+  }
+}

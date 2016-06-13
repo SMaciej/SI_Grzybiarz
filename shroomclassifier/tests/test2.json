@@ -1,0 +1,47 @@
+{
+  "actor" : {
+    "basket": {
+      "contains": [
+        {
+          "type": "?",
+          "poisonous": "?",
+          "weight": 150,
+          "pileus": {
+            "color": "red",
+            "shape": "cap"
+          },
+          "stipe": {
+            "info": "plain",
+            "height": 15
+          }
+        },
+        {
+          "type": "?",
+          "poisonous": "?",
+          "weight": 50,
+          "pileus": {
+            "color": "red",
+            "shape": "cap"
+          },
+          "stipe": {
+            "info": "plain",
+            "height": 5
+          }
+        },
+        {
+          "type": "?",
+          "poisonous": "?",
+          "weight": 50,
+          "pileus": {
+            "color": "red",
+            "shape": "cap"
+          },
+          "stipe": {
+            "info": "plain",
+            "height": 5
+          }
+        }
+      ]
+    }
+  }
+}
