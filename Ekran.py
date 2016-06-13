@@ -19,6 +19,7 @@ class Ekran(object):
         self.state = 1
         self.loadGraphic()
         self.mapa = self.loadmap("map")
+        self.mapa[0][0]='.'
         self.mapa2 = self.loadmap("map")
         self.postacPosition = (self.POS,self.POS)
 #        self.sciezka = [(19,19),(18,19),(18,18),(17,18),(17,17),(16,17),(16,16),(15,16),(15,15)]
@@ -115,6 +116,7 @@ class Ekran(object):
         mapa.generate()
         mapa.print_to_file('map')
         self.mapa = self.loadmap("map")
+        self.mapa[0][0]='.'
 
     # utworzenie grafu
     def createPath(self,start,end):

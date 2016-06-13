@@ -25,17 +25,17 @@ def make_graph(matrix):
         for colindex in columns:
             graph[node_name(rowindex, colindex)] = x = {}
             # Up
-            if rowindex > 0:
-                if (matrix[rowindex - 1][colindex]<9999): x[node_name(rowindex - 1, colindex)] = matrix[rowindex - 1][colindex]
+            if (rowindex > 0) and (matrix[rowindex - 1][colindex] !=10000):
+                x[node_name(rowindex - 1, colindex)] = matrix[rowindex - 1][colindex]
             # Down
-            if rowindex < height - 1:
-                if(matrix[rowindex + 1][colindex]<9999): x[node_name(rowindex + 1, colindex)] = matrix[rowindex + 1][colindex]
+            if (rowindex < height - 1) and (matrix[rowindex + 1][colindex]!=10000):
+                x[node_name(rowindex + 1, colindex)] = matrix[rowindex + 1][colindex]
             # Left
-            if colindex > 0:
-                if(matrix[rowindex][colindex - 1]<9999): x[node_name(rowindex, colindex - 1)] = matrix[rowindex][colindex - 1]
+            if (colindex > 0) and (matrix[rowindex][colindex - 1]!=10000):
+                x[node_name(rowindex, colindex - 1)] = matrix[rowindex][colindex - 1]
             # Right
-            if colindex < width - 1:
-                if(matrix[rowindex][colindex + 1]<9999): x[node_name(rowindex, colindex + 1)] = matrix[rowindex][colindex + 1]
+            if (colindex < width - 1) and (matrix[rowindex][colindex + 1] !=10000):
+                x[node_name(rowindex, colindex + 1)] = matrix[rowindex][colindex + 1]
 
     return graph
 #graph=make_graph(mylista)
