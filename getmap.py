@@ -8,9 +8,9 @@ def cost_table(lista):
             if lista[line][symbol] in ['m', 'p', 'h', 'c', 'l', 's', 'u']: 
                 wiersze.append(1)
             if lista[line][symbol]=='+': 
-                wiersze.append(10)
-            if lista[line][symbol]=='.': 
                 wiersze.append(50)
+            if lista[line][symbol]=='.': 
+                wiersze.append(100)
         costs.append(wiersze)
     return costs
 
