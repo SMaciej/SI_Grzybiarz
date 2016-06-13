@@ -64,6 +64,7 @@ def Dijkstra(G,start,end=None):
 			elif w not in Q or vwLength < Q[w]:
 				Q[w] = vwLength
 				P[w] = v
+	print('Djikstra')
 	print(D)
 	return D,P
 

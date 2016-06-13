@@ -58,7 +58,7 @@ class Ekran(object):
             self.naGrzybie(self.mapa,self.sciezka)
             self.drawTrees(self.mapa)      #wyswietlanie koron drzew
             pygame.display.flip()
-#            pygame.time.wait(500)
+            pygame.time.wait(500)
         self.progExit()
 
     # wczytywanie grafik
@@ -112,6 +112,7 @@ class Ekran(object):
 
     # tworzenie nowego swiata
     def createWorld(self):
+        print('Create new world')
         mapa = Map(self.RES, self.RES)
         mapa.generate()
         mapa.print_to_file('map')
@@ -120,12 +121,14 @@ class Ekran(object):
 
     # utworzenie grafu
     def createPath(self,start,end):
+        print('Create paths')
         self.cost = cost_table(self.mapa)
         self.graph = make_graph(self.cost)
         self.sciezka = shortestPath(self.graph, start, end)
 
     # rysowanie mapy
     def drawMap(self,mapa):
+        print('Draw map')
         Ydam = 0
         for line in mapa:
             Xdam = 0
@@ -136,6 +139,7 @@ class Ekran(object):
 
     # rysowanie koron drzew
     def drawTrees(self,mapa):
+        print('Draw trees')
         Ydam = 0
         for line in mapa:
             Xdam = 0
@@ -179,12 +183,14 @@ class Ekran(object):
 
     # rysowanie grzybiarza na mapie
     def rysujPostac(self,koords):
+        print('Draw mush-men')
         X = koords[0] * 24
         Y = koords[1] * 24
         self.surface.blit(self.grzybman,(X,Y))
 
     # wytworzenie statystyk kazdego grzyba na mapie
     def createParams(self,mapa):
+        print('Create mushroom parameters')
         tab1 = []
         for line in mapa:
             tab2 = []
@@ -243,6 +249,7 @@ class Ekran(object):
                 elif endPos == (self.POS,self.POS):
                     self.createWorld()
                     self.createPath((self.POS,self.POS),(0,0))
+                    self.uczenieMaszynowe(self.koszyk)
                 return endPos
             if krok == self.postacPosition:
                 nastepny = True
@@ -254,8 +261,14 @@ class Ekran(object):
 
     # funkcja zbierajaca grzyb z danej pozycji gracza i dodanie go do koszyka
     def zbierzGrzyb(self,mapa):
+        print('I take the mushroom')
         postX = self.postacPosition[0]
         postY = self.postacPosition[1]
         mapa[postY][postX] = '.'
         grzyb = self.mapStat[postY][postX]
         self.koszyk.append(grzyb)
+
+    def uczenieMaszynowe(self,koszyk):
+        print('Uczenie')
+        for i in range(len(koszyk)):
+            print(koszyk[i])

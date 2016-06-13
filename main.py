@@ -5,7 +5,7 @@ from config import trees, mushrooms, ground
 from Ekran import Ekran
 from generator import Map
 
-RES = 7
+RES = 10
 TILE = 24
 
 mapa = Map(RES, RES)
