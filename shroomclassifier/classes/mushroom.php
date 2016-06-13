@@ -50,9 +50,10 @@ class Mushroom
 
         if ($this->type !== '?') {
             $color = 100 * $this->PercentWithSimiliarColor();
-            $height = 100 * $this->PointsForHeight();
+            $height = 1.5 * $this->PointsForHeight();
+            $weight = (int)$this->weight;
 
-            $this->fitness = $color + $height;
+            $this->fitness = $color + ($height * $weight);
 
             if ($this->isPoisonous === '?') {
                 $this->fitness *= 0.20;
@@ -60,6 +61,8 @@ class Mushroom
             elseif ($this->isPoisonous === 'yes') {
                 $this->fitness *= 0.01;
             }
+        } else {
+            $this->fitness = -1;
         }
     }
 

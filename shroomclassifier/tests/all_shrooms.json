@@ -1,0 +1,112 @@
+{
+  "actor" : {
+    "basket": {
+      "contains": [
+        {
+          "type" : "?",
+          "poisonous" : "?",
+          "weight" : 150,
+          "pileus" : {
+            "color" : "red",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 15
+          }
+        },
+        {
+          "type" : "?",
+          "poisonous" : "?",
+          "weight" : 60,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "depressed"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        },
+        {
+          "type" : "?",
+          "poisonous" : "?",
+          "weight" : 40,
+          "pileus" : {
+            "color" : "light brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 6
+          }
+        },
+        {
+          "type" : "?",
+          "poisonous" : "?",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "rugged",
+            "height" : 6
+          }
+        },
+        {
+          "type" : "?",
+          "poisonous" : "?",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "white",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "dotted",
+            "height" : 6
+          }
+        },
+        {
+          "type" : "?",
+          "poisonous" : "?",
+          "weight" : 140,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cone"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        },
+        {
+          "type" : "?",
+          "poisonous" : "?",
+          "weight" : 150,
+          "pileus" : {
+            "color" : "yellow",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 8
+          }
+        },
+        {
+          "type" : "?",
+          "poisonous" : "?",
+          "weight" : 80,
+          "pileus" : {
+            "color" : "brown",
+            "shape" : "cap"
+          },
+          "stipe" : {
+            "info" : "plain",
+            "height" : 4
+          }
+        }
+      ]
+    }
+  }
+}
