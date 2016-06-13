@@ -2,10 +2,10 @@ import pygame, sys
 from pygame.locals import *
 from objects import Tree, Mushroom, Ground
 from config import trees, mushrooms, ground
-from Ekran import Ekran
+from Ekran2 import Ekran
 from generator import Map
 
-RES = 20
+RES = 7
 TILE = 24
 
 mapa = Map(RES, RES)
