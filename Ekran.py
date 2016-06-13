@@ -85,9 +85,9 @@ class Ekran(object):
     # wczytywanie slownika (dla funkcji debugujacej)
     def loadDict(self):
         self.dict = {}
-        self.dict['B'] = "[Drzewo Brzoza"
-        self.dict['D'] = "[Drzewo Dab"
-        self.dict['S'] = "[Drzewo Swierk"
+        self.dict['B'] = "[Teren Trawa" # "[Drzewo Brzoza"
+        self.dict['D'] = "[Teren Trawa" # "[Drzewo Dab"
+        self.dict['S'] = "[Teren Trawa" # "[Drzewo Swierk"
         self.dict['u'] = "[Grzyb Uszak"
         self.dict['s'] = "[Grzyb Muchomor Sromotnikowy"
         self.dict['p'] = "[Grzyb Pieprznik"
