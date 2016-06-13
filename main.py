@@ -13,5 +13,5 @@ mapa.generate()
 #mapa.print_map()
 mapa.print_to_file('map')
 
-Ekran(RES*TILE, RES*TILE)
+Ekran(RES*TILE, RES*TILE, RES)
 
