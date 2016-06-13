@@ -4,6 +4,7 @@ import sys
 import random
 from getmap import *
 from generator import Map
+from drzewo import *
 
 
 class Ekran(object):
@@ -27,7 +28,13 @@ class Ekran(object):
         self.loadDict()
         self.cursor = (0,0)
         self.koszyk = []
+
         self.grzybyUczenie = {}
+
+        self.drzewoZwolana = GrzybiarzDecisionTree()
+        self.candidates = ['poison','shape','stipe','color']
+        self.target = 'decision'
+
         self.cost=cost_table(self.mapa, self.grzybyUczenie)
         self.graph=make_graph(self.cost)
 #        print(self.graph)
@@ -47,10 +54,20 @@ class Ekran(object):
 
     # petla glowna
     def mainloop(self):
+        self.pause = False
         while self.state == 1:
             for event in pygame.event.get():
                 if event.type==QUIT or (event.type==KEYDOWN and event.key==K_ESCAPE):
                     self.state=0
+                if event.type==KEYDOWN and event.key == K_RETURN:
+                    self.pause = False
+                if event.type==KEYUP and event.key == K_SPACE:
+                    print('Pause')
+                if event.type==KEYDOWN and event.key == K_SPACE or self.pause:
+                    self.pause = True
+                    continue
+            if self.pause:
+                continue
 
             self.cursor = self.printPosition(event,self.mapa,self.mapStat,self.cursor)
             self.surface.fill((0,0,0))      #czyszczenie mapy
@@ -231,7 +248,14 @@ class Ekran(object):
         current = mapa[postY][postX]
         if current in ['u', 's', 'p', 'h', 'm', 'l', 'c']:
             print('NA GRZYBIE STOJE')
-            self.zbierzGrzyb(self.mapa)
+            if self.drzewoZwolana.decide(self.mapStat[postY][postX],self.candidates)==True:
+                print('zbieram bo True')
+                self.zbierzGrzyb(self.mapa)
+            elif self.drzewoZwolana.decide(self.mapStat[postY][postX],self.candidates) != None and self.drzewoZwolana.decide(self.mapStat[postY][postX],self.candidates) == False:
+                print('nie zbieram bo False')
+            else:
+                print('zbieram bo null')
+                self.zbierzGrzyb(self.mapa)
         else:
             print("NIE MA GRZYBA")
         print(sciezka)
@@ -252,8 +276,13 @@ class Ekran(object):
                     self.createPath((0, self.POS), (self.POS, self.POS))
                 elif endPos == (self.POS,self.POS):
                     self.uczenieMaszynowe(self.koszyk)
-                    print('oproznianie koszyka')
-                    self.koszyk = []
+                    self.daneUczace = konwertuj(self.koszyk)
+                    self.drzewoZwolana.fit(self.daneUczace,self.candidates,self.target)
+                    self.drzewoZwolana.pprint()
+                    for i in self.daneUczace:
+                        print(self.drzewoZwolana.decide(i,self.candidates))
+   #                 print('oproznianie koszyka')
+  #                  self.koszyk = []
                     self.createWorld()
                     self.createPath((self.POS,self.POS),(0,0))
                 return endPos
@@ -263,6 +292,7 @@ class Ekran(object):
             if nastepny:
                 print('ide do')
                 print(krok)
+ #               change_cost(self.cost,krok)
                 return krok
 
     # funkcja zbierajaca grzyb z danej pozycji gracza i dodanie go do koszyka
