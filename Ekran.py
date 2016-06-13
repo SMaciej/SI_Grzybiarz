@@ -17,21 +17,21 @@ class Ekran(object):
         self.POS = res - 1
         # zmienna stanu programu (1 -run, 0 - exit)
         self.state = 1
+        self.pause = False
         self.loadGraphic()
+        # utworzenie mapy
         self.mapa = self.loadmap("map")
         self.mapa[0][0]='.'
-        self.mapa2 = self.loadmap("map")
         self.postacPosition = (self.POS,self.POS)
 #        self.sciezka = [(19,19),(18,19),(18,18),(17,18),(17,17),(16,17),(16,16),(15,16),(15,15)]
         self.loadDict()
         self.cursor = (0,0)
         self.koszyk = []
+        self.grzybyUczenie = {}
         self.cost=cost_table(self.mapa)
         self.graph=make_graph(self.cost)
-
 #        print(self.graph)
         self.sciezka = shortestPath(self.graph, (self.POS,self.POS), (0,0))
-
 #        plik=open("koszt.txt", "w")
 #        for line in self.cost:
 #            for elem in line:
@@ -51,14 +51,15 @@ class Ekran(object):
             for event in pygame.event.get():
                 if event.type==QUIT or (event.type==KEYDOWN and event.key==K_ESCAPE):
                     self.state=0
+
             self.cursor = self.printPosition(event,self.mapa,self.mapStat,self.cursor)
-            self.surface.fill((0,0,0))
+            self.surface.fill((0,0,0))      #czyszczenie mapy
             self.drawMap(self.mapa)
             self.rysujPostac(self.postacPosition)
             self.naGrzybie(self.mapa,self.sciezka)
-            self.drawTrees(self.mapa)      #wyswietlanie koron drzew
+            self.drawTrees(self.mapa)      #rysowanie drzew
             pygame.display.flip()
-            pygame.time.wait(500)
+            pygame.time.wait(100)
         self.progExit()
 
     # wczytywanie grafik
@@ -163,7 +164,8 @@ class Ekran(object):
         X = int(X/24)
         Y = int(Y/24)
         key = mapa[Y][X]
-        info = self.dict[key]
+        info = 'INFO KURSOR: '
+        info += self.dict[key]
         if key in ['u', 's', 'p', 'h', 'm', 'l', 'c']:
             stat = ' poison: '
             stat += stats[Y][X]['poison']
@@ -252,6 +254,8 @@ class Ekran(object):
                     self.createWorld()
                     self.createPath((self.POS,self.POS),(0,0))
                     self.uczenieMaszynowe(self.koszyk)
+                    print('oproznianie koszyka')
+                    self.koszyk = []
                 return endPos
             if krok == self.postacPosition:
                 nastepny = True
@@ -272,5 +276,38 @@ class Ekran(object):
 
     def uczenieMaszynowe(self,koszyk):
         print('Uczenie')
-        for i in range(len(koszyk)):
+        wynik = 0
+        ileGrzybow = len(koszyk)
+        amountMush = {}
+        for i in range(ileGrzybow):
             print(koszyk[i])
+            key = koszyk[i]['key']
+            smak = koszyk[i]['taste']
+            if koszyk[i]['poison'] == 'y':
+                smak = smak - 15
+            if key not in amountMush:
+                amountMush[key] = {}
+                amountMush[key]['ile'] = 1
+                amountMush[key]['smak'] = smak
+            else:
+                amountMush[key]['ile'] += 1
+                amountMush[key]['smak'] += smak
+            wynik += smak
+
+        print('summary: ' + str(wynik))
+        for elem in amountMush:
+            amountMush[elem]['mnoznik'] = amountMush[elem]['smak'] / wynik
+            amountMush[elem]['dla1'] = amountMush[elem]['mnoznik'] / amountMush[elem]['ile']
+            print(elem)
+            print(amountMush[elem])
+            tmpWaga = amountMush[elem]['dla1']
+
+            if elem not in self.grzybyUczenie:
+                self.grzybyUczenie[elem] = tmpWaga
+            else:
+                oldWaga = self.grzybyUczenie[elem]
+                suma = oldWaga + tmpWaga
+                self.grzybyUczenie[elem] = suma / 2
+
+        for elem in self.grzybyUczenie:
+            print(self.dict[elem] + ' waga: ' + str(self.grzybyUczenie[elem]) + ']')
