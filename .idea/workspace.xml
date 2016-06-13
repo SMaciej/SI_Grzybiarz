@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d4500e6-64bf-4a09-a9ba-989dcd63f640" name="Default" comment="Przeniesione na php">
-      <change type="DELETED" beforePath="C:\xampp\htdocs\SI_Grzybiarz\shroomsclassifier\classes\AllowedValues.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\SI_Grzybiarz\shroomsclassifier\classes\actor.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\SI_Grzybiarz\shroomsclassifier\classes\basket.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\SI_Grzybiarz\shroomsclassifier\classes\config.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\SI_Grzybiarz\shroomsclassifier\classes\shroom.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\SI_Grzybiarz\shroomsclassifier\knowledge.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\SI_Grzybiarz\shroomsclassifier\main.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\SI_Grzybiarz\shroomsclassifier\windows.cmd" afterPath="" />
+    <list default="true" id="3d4500e6-64bf-4a09-a9ba-989dcd63f640" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="8ff8cfcc-4138-443c-8b19-00c6c1eb001a" name="Rejected commit: Default" comment="Przeniesione na php">
@@ -195,6 +187,13 @@
       <option name="number" value="Default" />
       <updated>1465666315936</updated>
     </task>
+    <task id="LOCAL-00001" summary="Przeniesione na php">
+      <created>1465809190891</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1465809190891</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
