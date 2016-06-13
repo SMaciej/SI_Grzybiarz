@@ -2,7 +2,7 @@ import pygame, sys
 from pygame.locals import *
 from objects import Tree, Mushroom, Ground
 from config import trees, mushrooms, ground
-from Ekran2 import Ekran
+from Ekran import Ekran
 from generator import Map
 
 RES = 7
