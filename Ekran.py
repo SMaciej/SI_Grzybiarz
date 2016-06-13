@@ -32,7 +32,7 @@ class Ekran(object):
 #                plik.write(str(elem))
 #                plik.write(' ')
 #            plik.write('\n')
-#        plik.close()	'''
+#        plik.close()	
         self.mainloop()
 
     # funkcja wyjscia z programu
