@@ -27,7 +27,10 @@ class Ekran(object):
         self.koszyk = []
         self.cost=cost_table(self.mapa)
         self.graph=make_graph(self.cost)
+
+		print(self.graph)
         self.sciezka = shortestPath(self.graph, (self.POS,self.POS), (0,0))
+
 #        plik=open("koszt.txt", "w")
 #        for line in self.cost:
 #            for elem in line:

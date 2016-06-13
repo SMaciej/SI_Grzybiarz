@@ -26,19 +26,20 @@ def make_graph(matrix):
             graph[node_name(rowindex, colindex)] = x = {}
             # Up
             if rowindex > 0:
-                x[node_name(rowindex - 1, colindex)] = matrix[rowindex - 1][colindex]
+                if (matrix[rowindex - 1][colindex]<9999): x[node_name(rowindex - 1, colindex)] = matrix[rowindex - 1][colindex]
             # Down
             if rowindex < height - 1:
-                x[node_name(rowindex + 1, colindex)] = matrix[rowindex + 1][colindex]
+                if(matrix[rowindex + 1][colindex]<9999): x[node_name(rowindex + 1, colindex)] = matrix[rowindex + 1][colindex]
             # Left
             if colindex > 0:
-                x[node_name(rowindex, colindex - 1)] = matrix[rowindex][colindex - 1]
+                if(matrix[rowindex][colindex - 1]<9999): x[node_name(rowindex, colindex - 1)] = matrix[rowindex][colindex - 1]
             # Right
             if colindex < width - 1:
-                x[node_name(rowindex, colindex + 1)] = matrix[rowindex][colindex + 1]
+                if(matrix[rowindex][colindex + 1]<9999): x[node_name(rowindex, colindex + 1)] = matrix[rowindex][colindex + 1]
 
     return graph
 #graph=make_graph(mylista)
+#print(graph)
 
 from priodict import priorityDictionary
 #start=(startx, starty)
@@ -54,9 +55,11 @@ def Dijkstra(G,start,end=None):
 		D[v] = Q[v]
 		if v == end: break
 		for w in G[v]:
+#			if G[v][w]<1000:
 			vwLength = D[v] + G[v][w]
 			if w in D:
 				if vwLength < D[w]:
+					print("wielgachny wynik")
 					raise ValueError
 			elif w not in Q or vwLength < Q[w]:
 				Q[w] = vwLength
@@ -79,11 +82,6 @@ def shortestPath(G,start,end):
 
 #print(shortestPath(make_graph(graph), (19,19), (0,0)))
 
-#def change_cost(table, step):
-#    table[step[0]][step[1]]=200
-#    return table
-
-def change_cost(table, way):
-	for x in range(len(way)):
-		table[x[0]][x[1]]=200
+def change_cost(table, step):
+    table[step[0]][step[1]]=200
     return table
